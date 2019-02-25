@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+function Cell(){
+  return(
+    <div className="cell">
+    <input className = "cell-input" type="text" maxLength = "1" size="1"></input>
+    </div>
+  );
+}
+
+  function Grid(){
+    const noOfCells= Array.apply(null, Array(9));
+    return(
+      <div className="grid">
+      <table className="sudoku-grid">
+      <tbody>
+      {noOfCells.map((value,index) => (
+        <tr key = {index}>
+          {noOfCells.map((value,item) => (
+        <td key = {(index*9)+item}><Cell key = {(index*9)+item}/></td>
+      ))}
+        </tr>
+      ))}
+      </tbody>
+      </table>
       </div>
     );
   }
+
+class Sudoku extends Component{
+  render(){
+    return(
+        <div className="sudoku-grid">
+        <Grid/>
+        </div>
+    );
+  }  
 }
 
-export default App;
+export default Sudoku;
